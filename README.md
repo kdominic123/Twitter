@@ -2,7 +2,7 @@
 
 TweetBot is a basic twitter app to read and compose tweets the [Twitter API](https://apps.twitter.com/).
 
-Time spent: 9 hours spent in total
+Time spent: 13 hours spent in total
 
 ## User Stories
 
@@ -12,7 +12,7 @@ The following **required** functionality is completed:
 - [x] User can view last 20 tweets from their home timeline
 - [x] The current signed in user will be persisted across restarts
 - [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
-- [ ] Retweeting and favoriting should increment the retweet and favorite count.
+- [x] Retweeting and favoriting should increment the retweet and favorite count.
 
 The following **optional** features are implemented:
 
@@ -39,7 +39,7 @@ GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+Had difficulty implementing the retweet and favoriting capability overcame it with the help of TA YINGYI LIANG and with refrence from his code.
 
 ## License
 
