@@ -11,12 +11,16 @@ import UIKit
 class Tweet: NSObject {
     
     var text: String?
-    var time: NSDate?
-    var retweetCount: Int = 0
+    var time: Date?
     var favouritesCount: Int = 0
     var imageProfile: String?
     var name: String?
     var screenname: String?
+    var retweetCount: Int = 0
+    var favoritesCount: Int = 0
+    var favorited: Bool?
+    var retweeted: Bool?
+    var id_str: String?
     
     init(dictionary: NSDictionary) {
         
@@ -28,6 +32,11 @@ class Tweet: NSObject {
         imageProfile = (dict["profile_image_url_https"] as? String)
         name = dict["name"] as! String?
         screenname = dict["screen_name"] as! String?
+        favorited = dictionary["favorited"] as? Bool
+        retweeted = dictionary["retweeted"] as? Bool
+        retweetCount = (dictionary["retweet_count"] as? Int) ?? 0
+        favoritesCount = (dictionary["favorite_count"] as? Int) ?? 0
+        id_str = dictionary["id_str"] as? String
         
         let timeString = dictionary["created_at"] as? String
         
@@ -36,7 +45,7 @@ class Tweet: NSObject {
             let formatter = DateFormatter()
             formatter.dateFormat = "EEE MMM d HH:mm:ss Z y"
             
-            time = formatter.date(from: timeString) as NSDate!
+            time = formatter.date(from: timeString)
         }
     }
     

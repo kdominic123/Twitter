@@ -18,6 +18,9 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         tableView.delegate = self
         tableView.dataSource = self
+        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.estimatedRowHeight = 100
+        
         // Do any additional setup after loading the view.
         
         TwitterClient.sharedInstance?.homeTimeline(success: { (tweets: [Tweet]) in
@@ -25,12 +28,6 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
             self.tweets = tweets
             self.tableView.reloadData()
             
-            for tweet in self.tweets {
-                
-                print("\n" + tweet.text!)
-                print(tweet.time!)
-                
-            }
         }, failure: { (error: NSError) in
             
             print(error.localizedDescription)
@@ -76,7 +73,7 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         
         cell.tweet = tweets![indexPath.row]
         
-        if cell.tweet?.imageProfile != nil {
+       /* if cell.tweet?.imageProfile != nil {
         
             let imageURL = URL(string: cell.tweet?.imageProfile as String!)
             cell.imageView?.setImageWith(imageURL!)
@@ -89,7 +86,8 @@ class TweetsViewController: UIViewController, UITableViewDataSource, UITableView
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yy"
         let date = dateFormatter.string(from: cell.tweet?.time as! Date) as String!
-        cell.timeLabel.text = date
+        cell.timeLabel.text = date */
+        
         return cell
     }
     

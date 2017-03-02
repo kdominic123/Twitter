@@ -85,6 +85,50 @@ class TwitterClient: BDBOAuth1SessionManager {
         })
     }
     
+    func favorite(id: String, success: @escaping (Tweet) -> (), faliure: @escaping (Error) -> ()) {
+        post("1.1/favorites/create.json", parameters: ["id": id], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            let response = response as! NSDictionary
+            let tweet = Tweet.init(dictionary: response)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            faliure(error)
+        }
+    }
+    
+    func unfavorite(id: String, success: @escaping (Tweet) -> (), faliure: @escaping (Error) -> ()) {
+        post("1.1/favorites/destroy.json", parameters: ["id": id], progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            let response = response as! NSDictionary
+            let tweet = Tweet.init(dictionary: response)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            faliure(error)
+        }
+    }
+    
+    func retweet(id: String, success: @escaping (Tweet) -> (), faliure: @escaping (Error) -> ()) {
+        post("1.1/statuses/retweet/\(id).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            let response = response as! NSDictionary
+            let tweet = Tweet.init(dictionary: response)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            faliure(error)
+        }
+    }
+    
+    func unretweet(id: String, success: @escaping (Tweet) -> (), faliure: @escaping (Error) -> ()) {
+        post("1.1/statuses/unretweet/\(id).json", parameters: nil, progress: nil, success: { (task: URLSessionDataTask, response: Any?) in
+            let response = response as! NSDictionary
+            let tweet = Tweet.init(dictionary: response)
+            success(tweet)
+            
+        }) { (task: URLSessionDataTask?, error: Error) in
+            faliure(error)
+        }
+    }
+    
     func logout() {
         
         User.currentUser = nil
